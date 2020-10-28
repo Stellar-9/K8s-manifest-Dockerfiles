@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serve
+  namespace: default
+  labels:
+    app: serve
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: serve
+  template:
+    metadata:
+      labels:
+        app: serve
+    spec:
+      containers:
+      - name: serve
+        image: serve:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080
+        env:
+        - name: URL
+          value: "http://callhello-service:9090"

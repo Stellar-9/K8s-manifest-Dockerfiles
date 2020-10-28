@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: callhello
+  namespace: default
+  labels:
+    app: callhello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: callhello
+  template:
+    metadata:
+      labels:
+        app: callhello
+    spec:
+      containers:
+      - name: callhello
+        image: callhello:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 9090
+        env:
+        - name: PORT
+          value: "9090"

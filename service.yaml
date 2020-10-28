@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: callhello-service
+spec:
+  ports:
+  - name: http
+    port: 9090
+    targetPort: 9090
+    protocol: TCP
+  selector:
+    app: callhello
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: serve-service
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: serve
